@@ -1,6 +1,6 @@
 package ecommerce.model;
 
-public class Produto {
+public abstract class Produto {
 
 	private int tipo;
 	private int id;
@@ -57,6 +57,7 @@ public class Produto {
 		System.out.println(" Dados do Produto ");
 		System.out.println("                  ");
 		System.out.println(" Id Produto: " + this.id);
+		System.out.println(" Nome Produto: " + this.nome);
 		System.out.println(" Tipo do Produto: " + tipo);
 		System.out.println(" Preço do Produto (R$) " + this.preco);
 	}
