@@ -15,8 +15,8 @@ public class Menu {
 		Controller produtos = new Controller();
 
 		int opcao;
-		int op, id, tipo, peso;
-		String nome, material, confirm;
+		int id, tipo, peso;
+		String nome, material;
 		float preco;
 
 		while (true) {
@@ -46,31 +46,33 @@ public class Menu {
 			}
 
 			switch (opcao) {
-			case 1:
-				System.out.println("Cadastrar Produto\n\n");
-
-				System.out.println("Digite o o tipo de Produto (1-Ferramenta 2-Material");
-				tipo = leia.nextInt();
-				System.out.println("Nome do produto: ");
-				leia.skip("\\R?");
-				nome = leia.nextLine();
-				System.out.println("Digite o preço do produto: ");
-				preco = leia.nextFloat();
-				switch (tipo) {
 				case 1:
+					System.out.println("Cadastrar Produto\n\n");
 
-					System.out.print("Digite o material da ferramenta (Madeira, Metal) ");
+					System.out.println("Digite o o tipo de Produto (1-Ferramenta 2-Material");
+					tipo = leia.nextInt();
+					System.out.println("Nome do produto: ");
 					leia.skip("\\R?");
-					material = leia.nextLine();
-					produtos.cadastrar(new Ferramenta(produtos.gerarId(), tipo, nome, preco, material));
-					break;
-				case 2:
-					System.out.print("Digite o Peso: ");
-					peso = leia.nextInt();
-					produtos.cadastrar(new Material(produtos.gerarId(), tipo, nome, preco, peso));
-					break;
+					nome = leia.nextLine();
+					System.out.println("Digite o preço do produto: ");
+					preco = leia.nextFloat();
+					switch (tipo) {
+						case 1 -> {
+
+							System.out.print("Digite o material da ferramenta (Madeira, Metal) ");
+							leia.skip("\\R?");
+							material = leia.nextLine();
+							produtos.cadastrar(new Ferramenta(produtos.gerarId(), tipo, nome, preco, material));
+
+						}
+						case 2 -> {
+							System.out.print("Digite o Peso: ");
+							peso = leia.nextInt();
+							produtos.cadastrar(new Material(produtos.gerarId(), tipo, nome, preco, peso));
+						
+						}
 				}
-				keyPress();
+						keyPress();
 				break;
 
 			case 2:
@@ -106,13 +108,13 @@ public class Menu {
 
 					switch (tipo) {
 					case 1:
-						System.out.print("Digite o nome do generico do medicamento: ");
+						System.out.print("Digite o material da ferramenta (Madeira, Metal): ");
 						leia.skip("\\R?");
 						material = leia.nextLine();
 						produtos.atualizarProduto(new Ferramenta(id, tipo, nome, preco, material));
 						break;
 					case 2:
-						System.out.print("Digite o nome da fragancia do cosmetico: ");
+						System.out.print("Digite o Peso: ");
 						leia.skip("\\R?");
 						peso = leia.nextInt();
 						produtos.atualizarProduto(new Material(id, tipo, nome, preco, peso));
@@ -129,7 +131,6 @@ public class Menu {
 				id = leia.nextInt();
 				produtos.consultarProduto(id);
 				leia.skip("\\R?");
-				confirm = leia.nextLine();
 				produtos.deletarproduto(id);
 
 				keyPress();

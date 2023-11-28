@@ -57,11 +57,6 @@ public class Controller implements Repository {
 			System.out.println("Produto não encontrado!");
 		}
 	}
-		public int gerarId() {
-			return ++ id;
-		}
-
-	
 
 	public Optional<Produto> buscarNaCollection(int id) {
 		for (var x : listaProdutos) {
@@ -71,8 +66,14 @@ public class Controller implements Repository {
 		}
 		return Optional.empty();
 	}
+
+	public int gerarId() {
+		return ++id;
+	}
+
 	public int retornaTipo(int id) {
 		Optional<Produto> produto = buscarNaCollection(id);
 		return produto.get().getTipo();
 	}
+
 }
